@@ -420,7 +420,7 @@ class IceCreamShop {
         if (this.money >= 200) {
             alert(`Congratulations! You have saved ${this.money} money and kept Joe Biden's ice cream shop open!`);
         } else if (this.money >= 150) {
-            alert(`Not bad! You earned " << money << " money. Joe's shop survives, but it’s going to be tough.`);
+            alert(`Not bad! You earned ${this.money} money. Joe's shop survives, but it’s going to be tough.`);
         } else {
             alert(`Oh no! You only saved ${this.money} money, which is far from the requirement to save the shop.`);
         }
