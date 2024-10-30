@@ -1,7 +1,7 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-image: url('/kem.png');
+            background-image: url('kem.png');
             background-size: cover; /* Cover the entire page */
             background-repeat: no-repeat; /* Do not repeat the image */
             background-position: center; /* Center the image */
