@@ -394,37 +394,64 @@ class IceCreamShop {
     const confirmEndGame = confirm("Are you sure you want to exit the game?");
     if (!confirmEndGame) return;
     this.displayEnding();
-    this.resetGame(); 
-   
-
-    }
-    resetGame() {
-    document.getElementById('game-container').style.display = 'none';
-    document.getElementById('intro-container').style.display = 'block';
-    const backgroundMusic = document.getElementById('background-music');
-    backgroundMusic.pause(); 
-    backgroundMusic.currentTime = 0;     
-    this.money = 100;
-    this.day = 1;
-    this.dailySalesLimit = 3;  
-    this.storage = {
-        Chocolate: 10,
-        Sprinkles: 5,
-        Cones: 6,
-        Vanilla: 8,
-    };
-    this.updateDayInfo();
     
     }
-    displayEnding() {
-        if (this.money >= 200) {
-            alert(`Congratulations! You have saved ${this.money} money and kept Joe Biden's ice cream shop open!`);
-        } else if (this.money >= 150) {
-            alert(`Not bad! You earned ${this.money} money. Joe's shop survives, but it’s going to be tough.`);
-        } else {
-            alert(`Oh no! You only saved ${this.money} money, which is far from the requirement to save the shop.`);
-        }
+    resetGame() {
+        document.getElementById('game-container').style.display = 'none';
+        document.getElementById('intro-container').style.display = 'block';
+        const backgroundMusic = document.getElementById('background-music');
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;     
+        this.money = 100;
+        this.day = 1;
+        this.dailySalesLimit = 3;  
+        this.storage = {
+            Chocolate: 10,
+            Sprinkles: 5,
+            Cones: 6,
+            Vanilla: 8,
+        };
+        this.updateDayInfo();
     }
+    displayEnding() {
+        const endingMessageDiv = document.getElementById('ending-message');
+        const endingTextDiv = document.querySelector('.ending-text');
+        const endingImage = document.querySelector('.ending-image');
+        const restartButton = document.getElementById('restart-button');
+    
+        endingMessageDiv.style.display = 'flex';
+    
+        let endingMessages;
+    
+        if (this.money >= 200) {
+            endingMessages = {
+                message: `Congratulations! You have saved ${this.money} money and kept Joe Biden's ice cream shop open!`,
+                image: "GoodEnding.png"
+            };
+        } else if (this.money >= 150) {
+            endingMessages = {
+                message: `Not bad! You earned ${this.money} money. Joe's shop survives, but it will be tough.`,
+                image: "NormalEnding.png"
+            };
+        } else {
+            endingMessages = {
+                message: `Oh no! You only saved ${this.money} money, which is far from the requirement to keep the shop open.`,
+                image: "BadEnding.png"
+            };
+        }
+    
+        endingTextDiv.innerHTML = endingMessages.message;
+        endingImage.src = endingMessages.image;
+        endingImage.alt = "Joe Biden";
+    
+        restartButton.style.display = 'block';
+    
+        restartButton.onclick = () => {
+            endingMessageDiv.style.display = 'none';
+            this.resetGame();
+        };
+    }
+        
 }
 
 const iceCreamShop = new IceCreamShop();
